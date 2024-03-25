@@ -3,6 +3,7 @@ import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import NavigationBar from "./(components)/navbar";
 import { ThemeProvider } from "./theme-provider";
+import { cn } from "@/lib/utils";
 
 const nunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="min-h-screen dark:bg-parentbg">
-      <body className={nunitoSans.className}>
+      <body className={cn("min-h-screen h-screen", nunitoSans.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

@@ -15,7 +15,7 @@ const ChatScreen = () => {
           <h2 className="mb-2 font-bold">Your conversations.</h2>
         </div>
       </section>
-      <section className="flex-1 bg-gray-300 dark:bg-convocolor">
+      <section className="flex-1 bg-gray-300 dark:bg-convocolor h-[calc(100vh-70px)]">
         <div className="flex flex-col w-[700px] m-auto min-h-full py-5">
           <div className="flex-1 overflow-y-auto px-[30px]">
             <ChatBubble
