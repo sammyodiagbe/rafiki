@@ -16,10 +16,10 @@ const NavigationBar = () => {
         <span className="font-bold">Chats</span>
         <div className="flex items-center">
           {/* toggle switch */}
-          <div className="mr-3 p-1 bg-gray-200 rounded-md dark:bg-darkchatcolor">
+          <div className="mr-3 p-3  rounded-md ">
             <Button
               className={cn(
-                "mr-2 bg-transparent text-black hover:bg-transparent h-[50px] w-[50px]",
+                "mr-2 bg-transparent text-black hover:bg-transparent h-[50px] w-[50px] dark:text-gray-500",
                 {
                   "bg-blue-500 hover:bg-blue-600 text-white": theme === "light",
                 }
@@ -42,7 +42,7 @@ const NavigationBar = () => {
               <Moon />
             </Button>
           </div>
-          <div className=" h-[40px] w-[40px] rounded-full bg-black dark:bg-gray-300"></div>
+          <div className=" h-[40px] w-[40px] rounded-full bg-gray-500 dark:bg-gray-300"></div>
         </div>
       </div>
     </nav>
