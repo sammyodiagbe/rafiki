@@ -19,7 +19,7 @@ export const ChatBubble: React.FC<ChatProps> = ({
         sender ? "bg-tranparent" : "bg-white dark:bg-darkchatcolor"
       )}
     >
-      <div className="h-[50px] w-[50px] rounded-full bg-gray-700 mr-4"></div>
+      <div className="h-[35px] w-[35px] rounded-full bg-gray-700 mr-4"></div>
       <div className="flex-1">
         <div className="">
           <div className="mb-3 flex justify-between">
