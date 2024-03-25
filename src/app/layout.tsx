@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={nunitoSans.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >

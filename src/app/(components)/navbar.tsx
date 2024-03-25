@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 const NavigationBar = () => {
   const { setTheme, theme } = useTheme();
   return (
-    <nav className="h-[70px] px-[30px] flex items-center dark:bg-black">
+    <nav className="px-[30px] flex items-center dark:bg-black">
       <div className=" min-w-[280px] ">
         <h1 className="text-2xl font-black">Rafiki</h1>
       </div>

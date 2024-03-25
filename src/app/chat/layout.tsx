@@ -12,8 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="min-h-screen">
-      <body className="min-h-screen w-full grid grid-flow-row grid-rows-[70px_1fr]">
+    <html lang="en" className="min-h-screen h-screen">
+      <body className="min-h-screen h-screen w-full grid grid-flow-row grid-rows-[70px_1fr]">
         <NavigationBar />
         {children}
       </body>
