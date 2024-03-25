@@ -16,20 +16,22 @@ export const ChatBubble: React.FC<ChatProps> = ({
     <div
       className={cn(
         "flex mb-5 p-5 rounded-lg",
-        sender ? "bg-tranparent" : "bg-white"
+        sender ? "bg-tranparent" : "bg-white dark:bg-darkchatcolor"
       )}
     >
       <div className="h-[50px] w-[50px] rounded-full bg-gray-700 mr-4"></div>
       <div className="flex-1">
         <div className="">
           <div className="mb-3 flex justify-between">
-            <p className="font-bold text-gray-500 text-sm">
+            <p className="font-bold text-gray-500 text-sm dark:text-gray-200">
               {sender ? "You" : "Rafiki"}
             </p>
-            <span className="text-sm text-gray-400">{sentAt}</span>
+            <span className="text-sm text-gray-400 dark:text-gray-400">
+              {sentAt}
+            </span>
           </div>
         </div>
-        <p className="text-gray-700 font-medium leading-relaxed">{message}</p>
+        <p className="text-gray-800 leading-9 dark:text-gray-200">{message}</p>
       </div>
     </div>
   );

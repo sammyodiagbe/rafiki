@@ -5,8 +5,8 @@ import { ChatBubble } from "../(components)/chat_bubble";
 
 const ChatScreen = () => {
   return (
-    <main className="flex-1 flex h-[calc(100vh - 70px)]">
-      <section className="min-w-[280px] p-[30px]">
+    <main className="grid grid-cols-[280px_1fr]">
+      <section className="min-w-[280px] p-[30px] dark:bg-black">
         <Button className="w-full py-7 mb-5" variant={"outline"}>
           <EditIcon />
           <span className="ml-2">New Conversation</span>
@@ -15,7 +15,7 @@ const ChatScreen = () => {
           <h2 className="mb-2 font-bold">Your conversations.</h2>
         </div>
       </section>
-      <section className="flex-1 bg-gray-200">
+      <section className="flex-1 bg-gray-300 dark:bg-convocolor">
         <div className="flex flex-col w-[700px] m-auto min-h-full py-5">
           <div className="flex-1 overflow-y-auto px-[30px]">
             <ChatBubble
@@ -40,14 +40,14 @@ const ChatScreen = () => {
             />
           </div>
           <div className=" flex gap-4 items-center">
-            <Button className="h-[60px] w-[65px] rounded-md bg-white hover:bg-gray-100">
+            <Button className="h-[60px] w-[65px] rounded-md bg-white hover:bg-gray-100 dark:bg-darkchatcolor dark:text-white">
               <Camera className="text-gray-400 " />
             </Button>
             <Input
-              placeholder="Ask rafike something"
-              className=" h-[60px] rounded-md font-medium"
+              placeholder="Ask rafiki something"
+              className=" h-[60px] rounded-md font-medium dark:bg-darkchatcolor"
             />
-            <Button className="h-[60px] w-[65px] rounded-md bg-blue-600 hover:bg-blue-700">
+            <Button className="h-[60px] w-[65px] rounded-md bg-blue-600 hover:bg-blue-700 dark:text-white">
               <Send />
             </Button>
           </div>
