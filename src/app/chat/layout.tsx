@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import NavigationBar from "../(components)/navbar";
 
 export const metadata: Metadata = {
   title: "Chat with rafiki",
@@ -14,7 +13,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="min-h-screen h-screen bg-red-400">
       <body className="min-h-screen  w-full grid grid-flow-row grid-rows-[70px_1fr] h-screen">
-        <NavigationBar />
         {children}
       </body>
     </html>

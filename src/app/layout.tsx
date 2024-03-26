@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import NavigationBar from "./(components)/navbar";
 import { ThemeProvider } from "./theme-provider";
 import { cn } from "@/lib/utils";
+import AuthProvider from "./clerkProvider";
+import NavigationBar from "./(components)/navbar";
 
 const nunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
@@ -18,17 +19,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="min-h-screen dark:bg-parentbg">
-      <body className={cn("min-h-screen h-screen", nunitoSans.className)}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" className="min-h-screen dark:bg-parentbg">
+        <body className={cn("min-h-screen h-screen", nunitoSans.className)}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <NavigationBar />
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </AuthProvider>
   );
 }
