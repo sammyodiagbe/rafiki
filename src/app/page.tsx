@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="p-10">
-      <section className="grid items-center grid-cols-2 h-[calc(100vh-70px)] pt-1 p-20 gap-10">
+      <section className="grid items-center grid-cols-[700px_1fr] h-[calc(100vh-70px)] pt-1 p-20 gap-10">
         <div>
-          <h1 className="text-7xl w-[800px] font-black pb-10">
+          <h1 className="text-7xl font-black pb-10">
             Follow <span className="text-blue-500">Rafiki</span>, he knows the
             way.
           </h1>
@@ -21,9 +23,21 @@ export default function Home() {
             the way. Join us and discover a new era of personalized AI
             assistance tailored to your unique needs and preferences.
           </p>
-          <Button className="bg-blue-500 py-7 px-10 hover:bg-blue-700 text-white">
-            Get Started
-          </Button>
+          <SignedOut>
+            <Button className="bg-blue-500 py-7 px-10 hover:bg-blue-700 text-white font-bold">
+              Get Started
+            </Button>
+          </SignedOut>
+          <SignedIn>
+            <Link href={"/chat"}>
+              <Button
+                variant={"outline"}
+                className="border-blue-500 text-blue py-7 px-10 font-bold text-blue-500"
+              >
+                Continue to chat
+              </Button>
+            </Link>
+          </SignedIn>
         </div>
         <div>
           <Image

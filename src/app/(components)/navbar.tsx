@@ -2,7 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { SignedIn, SignedOut, SignOutButton, useSession } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useSession,
+} from "@clerk/nextjs";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
@@ -17,7 +23,7 @@ const NavigationBar = () => {
   //     return;
   //   }
   return (
-    <nav className="px-[30px] flex items-center dark:bg-black sticky top-0">
+    <nav className="px-[30px] flex items-center dark:bg-black">
       <div className=" min-w-[280px] ">
         <h1 className="text-2xl font-black">Rafiki</h1>
       </div>
@@ -35,7 +41,7 @@ const NavigationBar = () => {
           <div className="mr-3 p-3  rounded-md ">
             <Button
               className={cn(
-                "mr-2 bg-transparent text-black hover:bg-transparent h-[50px] w-[50px] dark:text-gray-500",
+                "mr-2 bg-transparent text-black hover:bg-transparent h-[50px] w-[50px] dark:text-white",
                 {
                   "bg-blue-500 hover:bg-blue-600 text-white":
                     themecolor === "light",
@@ -65,12 +71,13 @@ const NavigationBar = () => {
             </Button>
           </div>
           <SignedOut>
-            <Button variant={"outline"}>Login</Button>
+            <Button variant={"outline"}>
+              <SignInButton mode="modal" afterSignInUrl="/chat">
+                Login
+              </SignInButton>
+            </Button>
           </SignedOut>
-          <SignedIn>
-            {/* <div className=" h-[40px] w-[40px] rounded-full bg-gray-500 dark:bg-gray-300"></div> */}
-            <SignOutButton />
-          </SignedIn>
+          <UserButton afterSignOutUrl="/" userProfileMode="navigation" />
         </div>
       </div>
     </nav>

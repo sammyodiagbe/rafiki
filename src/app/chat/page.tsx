@@ -4,8 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Camera, EditIcon, Send } from "lucide-react";
 import { ChatBubble } from "../(components)/chat_bubble";
+import { useState } from "react";
+import { useAction } from "convex/react";
+import { api } from "../../../convex/_generated/api";
 
 const ChatScreen = () => {
+  const [message, setMessage] = useState("");
+  const sendMessage = useAction(api.myActions.SendMessage);
+
+  const send = () => {
+    sendMessage({ message });
+  };
   return (
     <main className="grid grid-cols-[280px_1fr]">
       <section className="min-w-[280px] p-[30px] dark:bg-black">
@@ -48,8 +57,13 @@ const ChatScreen = () => {
             <Input
               placeholder="Ask rafiki something"
               className=" h-[60px] rounded-md font-medium dark:bg-darkchatcolor"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             />
-            <Button className="h-[60px] w-[65px] rounded-md bg-blue-600 hover:bg-blue-700 dark:text-white">
+            <Button
+              className="h-[60px] w-[65px] rounded-md bg-blue-600 hover:bg-blue-700 dark:text-white"
+              onClick={send}
+            >
               <Send />
             </Button>
           </div>
