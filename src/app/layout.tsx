@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import { cn } from "@/lib/utils";
 import AuthProvider from "./clerkProvider";
-import NavigationBar from "./(components)/navbar";
+import NavigationBar from "../components/navbar";
 
 const nunitoSans = Nunito_Sans({ subsets: ["latin"] });
 
