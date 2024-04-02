@@ -11,7 +11,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <body className="min-h-screen  w-full grid grid-flow-row grid-rows-[70px_1fr] h-screen">
+    <body className="grid  grid-rows-[70px_1fr] min-h-screen h-screen">
       {children}
     </body>
   );

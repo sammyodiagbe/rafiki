@@ -15,7 +15,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 const NavigationBar = () => {
   const { setTheme, theme } = useTheme();
-  const router = useRouter();
   const { isSignedIn } = useSession();
   const [themecolor, setThemeColor] = useState(theme || "light");
   // //   if (!user) {
@@ -23,7 +22,7 @@ const NavigationBar = () => {
   //     return;
   //   }
   return (
-    <nav className="px-[30px] flex items-center dark:bg-black">
+    <nav className="px-[30px] flex items-center bg-gray-100 dark:bg-black">
       <div className=" min-w-[280px] ">
         <h1 className="text-2xl font-black">Rafiki</h1>
       </div>

@@ -1,11 +1,11 @@
 "use client";
 
-import { ChatComponent } from "@/components/chat";
-import SideBar from "@/components/sidebar";
+import SideBar from "@/components/app-ui/sidebar";
+import ChatComponent from "@/components/app-ui/chat";
 
 const ChatConversation = () => {
   return (
-    <main className="grid grid-cols-[280px_1fr]">
+    <main className="flex">
       <SideBar />
       <ChatComponent />
     </main>
