@@ -28,6 +28,7 @@ const config = {
         darkchatcolor: "#2C2C2C",
         convocolor: "#1D1D1D",
         parentbg: "#141414",
+        backgroundCol: "#020817",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

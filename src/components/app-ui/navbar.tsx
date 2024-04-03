@@ -22,7 +22,7 @@ const NavigationBar = () => {
   //     return;
   //   }
   return (
-    <nav className="px-[30px] flex items-center bg-gray-100 dark:bg-black">
+    <nav className="px-[30px] flex items-center bg-gray-100 dark:bg-backgroundCol">
       <div className=" min-w-[280px] ">
         <h1 className="text-2xl font-black">Rafiki</h1>
       </div>
