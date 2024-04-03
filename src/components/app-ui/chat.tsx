@@ -10,8 +10,18 @@ const ChatComponent = () => {
 
   return (
     <section className="h-full max-h-full dark:bg-convocolor overflow-y-hidden">
-      <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto py-5 gap-4">
-        <div className="px-[30px]">
+      <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto py-5 gap-4 ">
+        <div className="px-[30px] overflow-auto no-scrollbar">
+          <ChatBubble
+            message="Hey chat, generate a quote for me."
+            sender={true}
+            sentAt="5 mins ago"
+          />
+          <ChatBubble
+            message="Our deepest fear is not that we are inadequate our deepest fear is that we are powerful beyond mesure, we ask ourselves, who am i to be pretty, smart and beautiful, actually who are you not to be."
+            sender={false}
+            sentAt="5 mins ago"
+          />
           <ChatBubble
             message="Hey chat, generate a quote for me."
             sender={true}

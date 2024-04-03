@@ -7,7 +7,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <NavigationBar />
       <main className="p-10">
         <section className="grid items-center grid-cols-[700px_1fr] h-[calc(100vh-70px)] pt-1 p-20 gap-10">
           <div>

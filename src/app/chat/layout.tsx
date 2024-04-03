@@ -11,10 +11,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <body className="grid grid-rows-[70px_1fr] bg-purple-100 max-h-screen h-screen">
-      <NavigationBar />
-      {children}
-    </body>
-  );
+  return <>{children}</>;
 }
