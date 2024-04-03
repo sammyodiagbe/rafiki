@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
 const SideBar = () => {
   return (
-    <div className="sticky bottom-0 top-[70px] min-w-[280px] p-[30px] bg-gray-100 dark:bg-transparent ">
+    <div className="w-[280px] p-[30px] max-h-full h-full bg-gray-100 dark:bg-transparent ">
       <Button className="w-full py-7 mb-5" variant={"default"}>
         <EditIcon />
         <span className="ml-2">New Conversation</span>

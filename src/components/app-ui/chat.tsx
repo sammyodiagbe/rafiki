@@ -9,8 +9,8 @@ const ChatComponent = () => {
   const [message, setMessage] = useState("");
 
   return (
-    <section className=" h-full max-h-full dark:bg-convocolor ">
-      <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] m-auto  py-5 gap-2">
+    <section className="h-full max-h-full dark:bg-convocolor overflow-y-hidden">
+      <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto py-5 gap-4">
         <div className="px-[30px]">
           <ChatBubble
             message="Hey chat, generate a quote for me."
@@ -22,19 +22,9 @@ const ChatComponent = () => {
             sender={false}
             sentAt="5 mins ago"
           />
-          <ChatBubble
-            message="Hey chat, generate a quote for me."
-            sender={true}
-            sentAt="5 mins ago"
-          />
-          <ChatBubble
-            message="Our deepest fear is not that we are inadequate our deepest fear is that we are powerful beyond mesure, we ask ourselves, who am i to be pretty, smart and beautiful, actually who are you not to be."
-            sender={false}
-            sentAt="5 mins ago"
-          />
         </div>
-        <div className=" flex gap-4 items-center sticky bottom-2">
-          <Button className="h-[60px] w-[65px] rounded-md bg-white hover:bg-gray-100 dark:bg-darkchatcolor dark:text-white">
+        <div className=" flex gap-4 items-center">
+          <Button className="h-[60px] w-[65px] rounded-md border-2 bg-white border-solid border-gray-600 hover:bg-gray-100 dark:bg-darkchatcolor dark:text-white">
             <Camera className="text-gray-400 " />
           </Button>
           <Input

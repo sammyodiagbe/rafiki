@@ -1,3 +1,4 @@
+import NavigationBar from "@/components/app-ui/navbar";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,7 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <body className="grid  grid-rows-[70px_1fr] min-h-screen h-screen">
+    <body className="grid grid-rows-[70px_1fr] bg-purple-100 max-h-screen h-screen">
+      <NavigationBar />
       {children}
     </body>
   );

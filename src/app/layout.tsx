@@ -21,14 +21,13 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en" className="min-h-screen dark:bg-parentbg">
-        <body className={cn("min-h-screen h-screen", nunitoSans.className)}>
+        <body className={cn("min-h-screen ", nunitoSans.className)}>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"
             enableSystem={false}
             disableTransitionOnChange
           >
-            <NavigationBar />
             {children}
           </ThemeProvider>
         </body>
