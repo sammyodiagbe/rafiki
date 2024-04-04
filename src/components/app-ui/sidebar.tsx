@@ -4,7 +4,6 @@ import { useQuery } from "convex/react";
 import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
-import { Id } from "../../../convex/_generated/dataModel";
 import { useUser } from "@clerk/nextjs";
 const SideBar = () => {
   const { user } = useUser();
