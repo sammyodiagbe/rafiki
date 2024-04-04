@@ -4,14 +4,9 @@ import { useQuery } from "convex/react";
 import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
 const SideBar = () => {
-  const { user } = useUser();
-  const conversations = useQuery(api.myQuery.getConversations, {
-    userId: user!.id,
-  });
+  const conversations = useQuery(api.myQuery.getConversations);
 
-  console.log(conversations);
   return (
     <div className="w-[280px] p-[30px] max-h-full h-full bg-gray-100 dark:bg-transparent ">
       <Button className="w-full py-7 mb-5" variant={"default"}>

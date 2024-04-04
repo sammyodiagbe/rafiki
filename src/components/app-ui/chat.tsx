@@ -5,8 +5,20 @@ import { Input } from "@/components/ui/input";
 import { Camera, Send } from "lucide-react";
 import { ChatBubble } from "./chat_bubble";
 import { useState } from "react";
+import { useMutation } from "convex/react";
+import { api } from "../../../convex/_generated/api";
+
 const ChatComponent = () => {
   const [message, setMessage] = useState("");
+  const createNewConversation = useMutation(
+    api.myMutations.createNewConversation
+  );
+
+  const sendMessage = async () => {
+    if (!message) return;
+    const conversationId = await createNewConversation({ message });
+    console.log(conversationId);
+  };
 
   return (
     <section className="h-full max-h-full dark:bg-convocolor overflow-y-hidden">
@@ -45,7 +57,9 @@ const ChatComponent = () => {
           />
           <Button
             className="h-[60px] w-[65px] rounded-md bg-blue-600 hover:bg-blue-700 dark:text-white"
-            onClick={() => {}}
+            onClick={() => {
+              sendMessage();
+            }}
           >
             <Send />
           </Button>

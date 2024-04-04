@@ -1,5 +1,5 @@
 import { mutation } from  "./_generated/server";
-import { v } from "convex/values"
+import { ConvexError, v } from "convex/values"
 
 
 export const createNewConversation = mutation({
@@ -7,25 +7,30 @@ export const createNewConversation = mutation({
 
     args: {
         message: v.string(),
-        userId: v.id('users'),
-        conversationId: v.optional(v.id('conversations')),
-    
     },
     async handler(ctx, args) {
-        const { message, userId, conversationId } = args;
-        if(!conversationId) {
+
+        const userIdentity = await ctx.auth.getUserIdentity();
+        const { message } = args;
             // conversation does not exist
             // create a new conversation
-            const newConversation = await ctx.db.insert("conversations", { userId, title: message, });
-            const newMessage = await ctx.db.insert("messages", { message, type: "user", conversationId: newConversation});
-            console.log(newMessage)
-            return;
-        }
 
-        // in this case we already have a conversation going on which means we have a conversation Id
-        const newMessage = await ctx.db.insert("messages", {message, type: 'user', conversationId});
-        return;
+        if(!userIdentity) throw new ConvexError('unauthorized');
+
+        const { tokenIdentifier } = userIdentity;
+            const newConversation = await ctx.db.insert("conversations", { userId: tokenIdentifier, title: message, });
+            return newConversation;
    }
    
+})
+
+
+export const sendMessage = mutation({
+    args: {message: v.string(), conversationId: v.id("conversations")},
+    async handler(ctx, args) {
+        const { message, conversationId} = args;
+         const newMessage = await ctx.db.insert("messages", { message, conversationId, type: 'user'});
+        //  after a new messsage has been created then we wanna save the message in the db and now we can do anuthing we want with openai
+    }
 })
 
