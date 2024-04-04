@@ -12,11 +12,10 @@ import {
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 const NavigationBar = () => {
   const { setTheme, theme } = useTheme();
+
   const { isSignedIn } = useSession();
-  const [themecolor, setThemeColor] = useState(theme || "light");
   // //   if (!user) {
   //     router.push("/");
   //     return;
@@ -24,7 +23,7 @@ const NavigationBar = () => {
   return (
     <nav className="px-[30px] flex items-center bg-gray-100 dark:bg-backgroundCol">
       <div className=" min-w-[280px] ">
-        <h1 className="text-2xl font-black">Rafiki</h1>
+        <h1 className="text-2xl font-black">Rafiki {theme}</h1>
       </div>
       <div
         className={cn(
@@ -41,14 +40,13 @@ const NavigationBar = () => {
             <Button
               className={cn(
                 "mr-2 bg-transparent text-black hover:bg-transparent h-[50px] w-[50px] dark:text-white",
-                {
-                  "bg-blue-500 hover:bg-blue-600 text-white":
-                    themecolor === "light",
-                }
+
+                theme == "light"
+                  ? "bg-blue-400 hover:bg-blue-600 text-white"
+                  : "bg-transparent text-gray-400"
               )}
               onClick={() => {
                 setTheme("light");
-                setThemeColor("light");
               }}
             >
               <Sun />
@@ -56,14 +54,12 @@ const NavigationBar = () => {
             <Button
               className={cn(
                 "mr-2 bg-transparent text-black hover:bg-transparent h-[50px] w-[50px]",
-                {
-                  "bg-blue-500 hover:bg-blue-600 text-white":
-                    themecolor === "dark",
-                }
+                theme === "dark"
+                  ? "bg-blue-300 hover:bg-blue-600 text-white"
+                  : "bg-transparent text-gray-400"
               )}
               onClick={() => {
                 setTheme("dark");
-                setThemeColor("dark");
               }}
             >
               <Moon />
