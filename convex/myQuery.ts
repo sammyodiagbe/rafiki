@@ -1,5 +1,5 @@
 import { query } from "./_generated/server";
-import { ConvexError, v } from "convex/values";
+import { ConvexError } from "convex/values";
 
 export const getConversations = query({
   args: {},
