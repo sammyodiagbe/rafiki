@@ -4,8 +4,13 @@ import { useQuery } from "convex/react";
 import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
+import { useUser } from "@clerk/nextjs";
 const SideBar = () => {
-  const conversations = useQuery(api.myQuery.getConversations);
+  const user = useUser();
+  const conversations = useQuery(
+    api.myQuery.getConversations,
+    !user.isLoaded ? "skip" : {}
+  );
 
   return (
     <div className="w-[280px] p-[30px] max-h-full h-full bg-gray-100 dark:bg-transparent ">
