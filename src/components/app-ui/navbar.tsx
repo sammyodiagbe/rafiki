@@ -72,7 +72,9 @@ const NavigationBar = () => {
               </SignInButton>
             </Button>
           </SignedOut>
-          <UserButton afterSignOutUrl="/" userProfileMode="navigation" />
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" userProfileMode="navigation" />
+          </SignedIn>
         </div>
       </div>
     </nav>
