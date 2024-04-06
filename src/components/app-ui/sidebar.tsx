@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 const SideBar = () => {
   const user = useUser();
   const conversations = useQuery(
@@ -23,10 +24,14 @@ const SideBar = () => {
 
         <div className="">
           {conversations?.map((convo, index) => {
+            console.log(convo);
+            const { _id } = convo;
             return (
-              <p className="mb-2" key={index}>
-                {convo.title}
-              </p>
+              <div className="" key={_id}>
+                <Link href={`/c?convoId=${_id}`} className="mb-2">
+                  {convo.title}
+                </Link>
+              </div>
             );
           })}
         </div>

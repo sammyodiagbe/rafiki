@@ -9,9 +9,11 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 const ChatComponent = () => {
   const [message, setMessage] = useState("");
+  const user = useUser();
   const router = useRouter();
   const createNewConversation = useMutation(
     api.myMutations.createNewConversation
@@ -22,7 +24,11 @@ const ChatComponent = () => {
 
   const messages = useQuery(
     api.myQuery.getConversationMessages,
-    !convId ? "skip" : { conversationId: convId }
+    user.isLoaded
+      ? convId === null
+        ? "skip"
+        : { conversationId: convId }
+      : "skip"
   );
 
   const sendMessage = async () => {

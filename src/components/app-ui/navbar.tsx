@@ -11,7 +11,6 @@ import {
 } from "@clerk/nextjs";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useState } from "react";
 const NavigationBar = () => {
   const { setTheme, theme } = useTheme();
 
@@ -23,7 +22,7 @@ const NavigationBar = () => {
   return (
     <nav className="px-[30px] flex items-center bg-gray-100 dark:bg-backgroundCol">
       <div className=" min-w-[280px] ">
-        <h1 className="text-2xl font-black">Rafiki {theme}</h1>
+        <h1 className="text-2xl font-black">Rafiki</h1>
       </div>
       <div
         className={cn(
