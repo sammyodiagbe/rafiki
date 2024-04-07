@@ -5,11 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Camera, Send } from "lucide-react";
 import { ChatBubble } from "./chat_bubble";
 import { useState } from "react";
-import { useMutation, useQuery } from "convex/react";
+import { useAction, useMutation, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/nextjs";
+import { Id } from "../../../convex/_generated/dataModel";
 
 const ChatComponent = () => {
   const [message, setMessage] = useState("");
@@ -18,7 +19,7 @@ const ChatComponent = () => {
   const createNewConversation = useMutation(
     api.myMutations.createNewConversation
   );
-  const sendmessage = useMutation(api.myMutations.sendMessage);
+  const sendmessage = useAction(api.myMutations.sendMessage);
   const searchParams = useSearchParams();
   const convId = searchParams.get("convId");
 
@@ -34,7 +35,10 @@ const ChatComponent = () => {
   const sendMessage = async () => {
     if (!message) return;
 
-    await sendmessage({ message, conversationId: convId! });
+    await sendmessage({
+      message,
+      conversationId: convId as Id<"conversations">,
+    });
     setMessage("");
   };
 
