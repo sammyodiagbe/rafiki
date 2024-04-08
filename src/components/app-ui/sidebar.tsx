@@ -30,7 +30,7 @@ const SideBar = () => {
         </h2>
 
         <div className="">
-          {conversations?.map((convo, index) => {
+          {conversations?.map((convo) => {
             console.log(convo);
             const { _id } = convo;
             return (

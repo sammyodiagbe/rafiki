@@ -54,7 +54,7 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
       <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto pb-5 gap-4 ">
         <div className="px-[30px] overflow-auto no-scrollbar" ref={convoRef}>
           {messages && messages.length
-            ? messages.map((m, index) => {
+            ? messages.map((m) => {
                 const { message, type, _id } = m;
                 return (
                   <ChatBubble
