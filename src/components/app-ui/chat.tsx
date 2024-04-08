@@ -4,33 +4,29 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Camera, Send } from "lucide-react";
 import { ChatBubble } from "./chat_bubble";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAction, useMutation, useQuery } from "convex/react";
 import { api } from "../../../convex/_generated/api";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
 import { Id } from "../../../convex/_generated/dataModel";
+import { messageType } from "@/app/custom-type";
 
-const ChatComponent = () => {
+type ComponentProps = {
+  messages?: messageType[];
+};
+
+const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
   const [message, setMessage] = useState("");
-  const user = useUser();
+  const convoRef = useRef<HTMLDivElement | null>(null);
+  const pathName = usePathname();
   const router = useRouter();
   const createNewConversation = useMutation(
     api.myMutations.createNewConversation
   );
   const sendmessage = useAction(api.myMutations.sendMessage);
   const searchParams = useSearchParams();
-  const convId = searchParams.get("convId");
-
-  const messages = useQuery(
-    api.myQuery.getConversationMessages,
-    user.isLoaded
-      ? convId === null
-        ? "skip"
-        : { conversationId: convId }
-      : "skip"
-  );
+  const convId = searchParams.get("convoId");
 
   const sendMessage = async () => {
     if (!message) return;
@@ -39,21 +35,22 @@ const ChatComponent = () => {
       message,
       conversationId: convId as Id<"conversations">,
     });
+    const elem = convoRef.current!;
+    elem.scrollTop = elem.scrollHeight - elem.clientHeight;
     setMessage("");
   };
 
   const createNewConvo = async () => {
     if (!message) return;
     const conversationId = await createNewConversation({ message });
-    console.log("creaate convo id ", conversationId);
     await sendmessage({ message, conversationId });
     router.push(`/c?convId=${conversationId}`);
   };
 
   return (
     <section className="h-full max-h-full dark:bg-convocolor overflow-y-hidden">
-      <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto py-5 gap-4 ">
-        <div className="px-[30px] overflow-auto no-scrollbar">
+      <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto pb-5 gap-4 ">
+        <div className="px-[30px] overflow-auto no-scrollbar" ref={convoRef}>
           {messages && messages.length ? (
             messages.map((m, index) => {
               const { message, type } = m;
@@ -82,7 +79,7 @@ const ChatComponent = () => {
           <Button
             className="h-[60px] w-[65px] rounded-md bg-blue-600 hover:bg-blue-700 dark:text-white"
             onClick={() => {
-              if (convId) {
+              if (pathName === "/c") {
                 sendMessage();
                 return;
               }

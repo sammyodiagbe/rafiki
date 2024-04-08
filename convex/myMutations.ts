@@ -6,8 +6,7 @@ import {
 } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 import { openai } from "../src/app/openai";
-import { ChatCompletionMessageParam } from "openai/resources";
-import { api, internal } from "./_generated/api";
+import { internal } from "./_generated/api";
 
 export const createNewConversation = mutation({
   args: {
