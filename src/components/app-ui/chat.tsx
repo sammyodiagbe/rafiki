@@ -55,12 +55,13 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
         <div className="px-[30px] overflow-auto no-scrollbar" ref={convoRef}>
           {messages && messages.length
             ? messages.map((m, index) => {
-                const { message, type } = m;
+                const { message, type, _id } = m;
                 return (
                   <ChatBubble
                     message={message}
                     sender={type === "user"}
                     sentAt="4 mins ago"
+                    key={_id}
                   />
                 );
               })
