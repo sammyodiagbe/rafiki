@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Camera, Send } from "lucide-react";
 import { ChatBubble } from "./chat_bubble";
 import { useRef, useState } from "react";
-import { useAction, useMutation, useQuery } from "convex/react";
+import { useAction, useMutation, Watch } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -21,6 +21,7 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
   const convoRef = useRef<HTMLDivElement | null>(null);
   const pathName = usePathname();
   const router = useRouter();
+
   const createNewConversation = useMutation(
     api.myMutations.createNewConversation
   );
@@ -35,8 +36,9 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
       message,
       conversationId: convId as Id<"conversations">,
     });
-    const elem = convoRef.current!;
-    elem.scrollTop = elem.scrollHeight - elem.clientHeight;
+
+    convoRef.current!.scrollTop =
+      convoRef.current!.scrollHeight - convoRef.current!.clientHeight;
     setMessage("");
   };
 
@@ -51,20 +53,18 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
     <section className="h-full max-h-full dark:bg-convocolor overflow-y-hidden">
       <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto pb-5 gap-4 ">
         <div className="px-[30px] overflow-auto no-scrollbar" ref={convoRef}>
-          {messages && messages.length ? (
-            messages.map((m, index) => {
-              const { message, type } = m;
-              return (
-                <ChatBubble
-                  message={message}
-                  sender={type === "user"}
-                  sentAt="4 mins ago"
-                />
-              );
-            })
-          ) : (
-            <p>You don't no messages right now</p>
-          )}
+          {messages && messages.length
+            ? messages.map((m, index) => {
+                const { message, type } = m;
+                return (
+                  <ChatBubble
+                    message={message}
+                    sender={type === "user"}
+                    sentAt="4 mins ago"
+                  />
+                );
+              })
+            : null}
         </div>
         <div className=" flex gap-4 items-center">
           <Button className="h-[60px] w-[65px] rounded-md border-2 bg-white border-solid border-gray-600 hover:bg-gray-100 dark:bg-darkchatcolor dark:text-white">
