@@ -45,7 +45,7 @@ export const sendMessage = action({
     })) as ChatCompletionMessageParam[];
 
     const ai = await openai.chat.completions.create({
-      messages: messages as ChatCompletionMessageParam[],
+      messages: messages,
       model: "gpt-4",
     });
 
