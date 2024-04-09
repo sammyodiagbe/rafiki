@@ -1,4 +1,4 @@
-import { ChatCompletionMessage } from "openai/resources";
+import { ChatCompletionMessage } from "openai/resources/index";
 import { internalQuery, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 
