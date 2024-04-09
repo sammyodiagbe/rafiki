@@ -4,6 +4,12 @@ import { openai } from "../src/app/openai";
 import { internal } from "./_generated/api";
 import { ChatCompletionMessageParam } from "openai/resources";
 
+type MessageType = {
+  role: string;
+  content: string;
+  name?: string;
+};
+
 export const createNewConversation = mutation({
   args: {
     message: v.string(),
@@ -40,19 +46,16 @@ export const sendMessage = action({
       type: "user",
     });
 
-    const messages = await ctx.runQuery(internal.myQuery.fetchMessages, {
+    const msgs = (await ctx.runQuery(internal.myQuery.fetchMessages, {
       conversationId: conversationId,
-    });
+    })) as ChatCompletionMessageParam[];
     ("===================");
-    console.log(messages);
+    console.log(msgs);
 
-    const ai = await openai.chat.completions.create(
-      {
-        messages: [],
-        model: "gpt-3.5-turbo",
-      },
-      { stream: true }
-    );
+    const ai = await openai.chat.completions.create({
+      messages: msgs,
+      model: "gpt-3.5-turbo",
+    });
 
     const aiMessage = ai.choices[0].message.content!;
 
