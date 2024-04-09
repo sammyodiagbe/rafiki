@@ -17,6 +17,7 @@ import type {
 import type * as acti from "../acti.js";
 import type * as myMutations from "../myMutations.js";
 import type * as myQuery from "../myQuery.js";
+import type * as sendMessage from "../sendMessage.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -30,6 +31,7 @@ declare const fullApi: ApiFromModules<{
   acti: typeof acti;
   myMutations: typeof myMutations;
   myQuery: typeof myQuery;
+  sendMessage: typeof sendMessage;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

@@ -1,3 +1,4 @@
+import { ChatCompletionMessage } from "openai/resources";
 import { internalQuery, query } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 
@@ -41,11 +42,13 @@ export const fetchMessages = internalQuery({
       .query("messages")
       .filter((q) => q.eq(q.field("conversationId"), conversationId))
       .collect();
-    let newMessages = messages.map((message) => ({
-      role: message.type,
-      content: message.message,
-      name: "",
-    }));
+    let newMessages = messages.map((message) => {
+      return {
+        role: message.type,
+        content: message.message,
+        name: "",
+      } as ChatCompletionMessage;
+    });
 
     console.log("============");
     console.log(newMessages);
