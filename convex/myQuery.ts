@@ -44,7 +44,11 @@ export const fetchMessages = internalQuery({
     let newMessages = messages.map((message) => ({
       role: message.type,
       content: message.message,
+      name: "",
     }));
+
+    console.log("============");
+    console.log(newMessages);
 
     return newMessages;
   },

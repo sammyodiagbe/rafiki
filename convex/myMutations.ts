@@ -40,14 +40,19 @@ export const sendMessage = action({
       type: "user",
     });
 
-    const messages = (await ctx.runQuery(internal.myQuery.fetchMessages, {
+    const messages = await ctx.runQuery(internal.myQuery.fetchMessages, {
       conversationId: conversationId,
-    })) as ChatCompletionMessageParam[];
-
-    const ai = await openai.chat.completions.create({
-      messages: messages,
-      model: "gpt-4",
     });
+    ("===================");
+    console.log(messages);
+
+    const ai = await openai.chat.completions.create(
+      {
+        messages: [],
+        model: "gpt-3.5-turbo",
+      },
+      { stream: true }
+    );
 
     const aiMessage = ai.choices[0].message.content!;
 
