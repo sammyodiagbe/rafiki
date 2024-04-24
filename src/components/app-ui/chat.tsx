@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Camera, Send } from "lucide-react";
 import { ChatBubble } from "./chat_bubble";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { useAction, useMutation, Watch } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -53,19 +53,21 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
     <section className="h-full max-h-full dark:bg-convocolor overflow-y-hidden">
       <div className="max-h-full h-full grid grid-rows-[1fr_auto] w-[700px] mx-auto pb-5 gap-4 ">
         <div className="px-[30px] overflow-auto no-scrollbar" ref={convoRef}>
-          {messages && messages.length
-            ? messages.map((m) => {
-                const { message, type, _id } = m;
-                return (
-                  <ChatBubble
-                    message={message}
-                    sender={type === "user"}
-                    sentAt="4 mins ago"
-                    key={_id}
-                  />
-                );
-              })
-            : null}
+          <Suspense fallback={<h1>Loading information</h1>}>
+            {messages && messages.length
+              ? messages.map((m) => {
+                  const { message, type, _id } = m;
+                  return (
+                    <ChatBubble
+                      message={message}
+                      sender={type === "user"}
+                      sentAt="4 mins ago"
+                      key={_id}
+                    />
+                  );
+                })
+              : null}
+          </Suspense>
         </div>
         <div className=" flex gap-4 items-center">
           <Button className="h-[60px] w-[65px] rounded-md border-2 bg-white border-solid border-gray-600 hover:bg-gray-100 dark:bg-darkchatcolor dark:text-white">

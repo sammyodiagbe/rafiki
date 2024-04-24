@@ -6,6 +6,7 @@ import { EditIcon } from "lucide-react";
 import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { Suspense } from "react";
 const SideBar = () => {
   const user = useUser();
   const conversations = useQuery(
@@ -30,22 +31,24 @@ const SideBar = () => {
         </h2>
 
         <div className="">
-          {conversations?.map((convo) => {
-            console.log(convo);
-            const { _id } = convo;
-            return (
-              <div
-                className="p-2 py-3 hover:bg-gray-200 dark:hover:bg-hover"
-                key={_id}
-              >
-                <Link href={`/c?convoId=${_id}`} className="mb-2">
-                  {convo.title.length > 30
-                    ? `${convo.title.slice(0, 30)}..`
-                    : convo.title}
-                </Link>
-              </div>
-            );
-          })}
+          <Suspense fallback={<h1>Worlding</h1>}>
+            {conversations?.map((convo) => {
+              console.log(convo);
+              const { _id } = convo;
+              return (
+                <div
+                  className="p-2 py-3 hover:bg-gray-200 dark:hover:bg-hover"
+                  key={_id}
+                >
+                  <Link href={`/c?convoId=${_id}`} className="mb-2">
+                    {convo.title.length > 30
+                      ? `${convo.title.slice(0, 30)}..`
+                      : convo.title}
+                  </Link>
+                </div>
+              );
+            })}
+          </Suspense>
         </div>
       </div>
     </div>

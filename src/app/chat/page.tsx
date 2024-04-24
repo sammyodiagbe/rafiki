@@ -2,6 +2,7 @@
 
 import SideBar from "@/components/app-ui/sidebar";
 import ChatComponent from "@/components/app-ui/chat";
+import { Suspense } from "react";
 
 const ChatScreen = () => {
   return (
@@ -12,4 +13,12 @@ const ChatScreen = () => {
   );
 };
 
-export default ChatScreen;
+const ChatScreenWithSuspense = () => {
+  return (
+    <Suspense>
+      <ChatScreen />
+    </Suspense>
+  );
+};
+
+export default ChatScreenWithSuspense;

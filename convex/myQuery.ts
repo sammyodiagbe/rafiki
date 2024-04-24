@@ -43,13 +43,10 @@ export const fetchMessages = internalQuery({
       .collect();
     let newMessages = messages.map((message) => {
       return {
-        role: message.type,
+        role: message.type.trim(),
         content: message.message.trim(),
       };
     });
-
-    console.log("============");
-    console.log(newMessages);
 
     return newMessages;
   },
