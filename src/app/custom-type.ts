@@ -8,3 +8,10 @@ export type messageType = {
   conversationId: string;
   message: string;
 };
+
+export type ConversationType = {
+  _id: Id<"conversations">;
+  _creationTime: number;
+  title: string;
+  userId: string;
+};

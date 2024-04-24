@@ -1,18 +1,18 @@
 "use client";
 
-import { useQuery } from "convex/react";
 import { Button } from "../ui/button";
 import { EditIcon } from "lucide-react";
-import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { Suspense } from "react";
-const SideBar = () => {
+import { ConversationType } from "@/app/custom-type";
+
+type ComponentProps = {
+  conversations?: ConversationType[];
+};
+
+const SideBar: React.FC<ComponentProps> = ({ conversations }) => {
   const user = useUser();
-  const conversations = useQuery(
-    api.myQuery.getConversations,
-    !user.isLoaded ? "skip" : {}
-  );
 
   return (
     <div className="w-[280px] pt-[30px] max-h-full h-full bg-gray-100 dark:bg-transparent ">
