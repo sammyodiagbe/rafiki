@@ -2,6 +2,7 @@ import { mutation, action, internalMutation } from "./_generated/server";
 import { ConvexError, v } from "convex/values";
 import { openai } from "../src/app/openai";
 import { internal } from "./_generated/api";
+import { ChatCompletionMessageParam } from "openai/resources";
 
 type MessageType = {
   role: string;
@@ -45,10 +46,9 @@ export const sendMessage = action({
       type: "user",
     });
 
-    const msgs = await ctx.runQuery(internal.myQuery.fetchMessages, {
+    const msgs = (await ctx.runQuery(internal.myQuery.fetchMessages, {
       conversationId: conversationId,
-    });
-    console.log(msgs);
+    })) as ChatCompletionMessageParam[];
 
     const ai = await openai.chat.completions.create({
       messages: msgs,

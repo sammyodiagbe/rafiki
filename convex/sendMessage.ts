@@ -18,23 +18,23 @@ export const sendMessage = action({
       type: "user",
     });
 
-    const msgs = await ctx.runQuery(internal.myQuery.fetchMessages, {
-      conversationId: conversationId,
-    });
-    console.log(msgs);
+    // const msgs = await ctx.runQuery(internal.myQuery.fetchMessages, {
+    //   conversationId: conversationId,
+    // });
+    // console.log(msgs);
 
-    const ai = await openai.chat.completions.create({
-      messages: [...msgs],
-      model: "gpt-3.5-turbo",
-    });
+    // const ai = await openai.chat.completions.create({
+    //   messages: [...msgs],
+    //   model: "gpt-3.5-turbo",
+    // });
 
-    const aiMessage = ai.choices[0].message.content!;
+    // const aiMessage = ai.choices[0].message.content!;
 
-    await ctx.runMutation(internal.myMutations.saveMessage, {
-      message: aiMessage,
-      conversationId,
-      type: "assistant",
-    });
+    // await ctx.runMutation(internal.myMutations.saveMessage, {
+    //   message: aiMessage,
+    //   conversationId,
+    //   type: "assistant",
+    // });
 
     return true;
     //  after a new messsage has been created then we wanna save the message in the db and now we can do anuthing we want with openai

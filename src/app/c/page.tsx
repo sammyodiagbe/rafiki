@@ -14,6 +14,8 @@ const ChatConversation = () => {
   const user = useUser();
   const conversationId = params.get("convoId") as Id<"conversations">;
 
+  console.log(conversationId);
+
   // so what happens is i want to be able to get the conversation for thisconst messages = useQuery(
   const messages = useQuery(
     api.myQuery.getConversationMessages,

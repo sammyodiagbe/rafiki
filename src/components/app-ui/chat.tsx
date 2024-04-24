@@ -46,7 +46,7 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
     if (!message) return;
     const conversationId = await createNewConversation({ message });
     await sendmessage({ message, conversationId });
-    router.push(`/c?convId=${conversationId}`);
+    router.push(`/c?convoId=${conversationId}`);
   };
 
   return (
