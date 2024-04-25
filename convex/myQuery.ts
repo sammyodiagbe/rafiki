@@ -23,15 +23,19 @@ export const getConversations = query({
 export const getConversationMessages = query({
   args: { conversationId: v.id("conversations") },
   async handler(ctx, args) {
-    const { conversationId } = args;
-    const user = await ctx.auth.getUserIdentity();
-    if (!user) throw new ConvexError("You are not authorized");
+    try {
+      const { conversationId } = args;
+      const user = await ctx.auth.getUserIdentity();
+      if (!user) throw new ConvexError("You are not authorized");
 
-    const messages = await ctx.db
-      .query("messages")
-      .filter((q) => q.eq(q.field("conversationId"), conversationId))
-      .collect();
-    return messages;
+      const messages = await ctx.db
+        .query("messages")
+        .filter((q) => q.eq(q.field("conversationId"), conversationId))
+        .collect();
+      return messages;
+    } catch (error) {
+      console.log(error);
+    }
   },
 });
 
