@@ -31,24 +31,26 @@ const SideBar: React.FC<ComponentProps> = ({ conversations }) => {
         </h2>
 
         <div className="">
-          <Suspense fallback={<h1>Worlding</h1>}>
-            {conversations?.map((convo) => {
-              console.log(convo);
-              const { _id } = convo;
-              return (
-                <div
-                  className="p-2 py-3 hover:bg-gray-200 dark:hover:bg-hover"
-                  key={_id}
-                >
-                  <Link href={`/c?convoId=${_id}`} className="mb-2">
-                    {convo.title.length > 30
-                      ? `${convo.title.slice(0, 30)}..`
-                      : convo.title}
-                  </Link>
-                </div>
-              );
-            })}
-          </Suspense>
+          {user.isLoaded ? (
+            <Suspense fallback={<h1>Worlding</h1>}>
+              {conversations?.map((convo) => {
+                console.log(convo);
+                const { _id } = convo;
+                return (
+                  <div
+                    className="p-2 py-3 hover:bg-gray-200 dark:hover:bg-hover"
+                    key={_id}
+                  >
+                    <Link href={`/c?convoId=${_id}`} className="mb-2">
+                      {convo.title.length > 30
+                        ? `${convo.title.slice(0, 30)}..`
+                        : convo.title}
+                    </Link>
+                  </div>
+                );
+              })}
+            </Suspense>
+          ) : null}
         </div>
       </div>
     </div>
