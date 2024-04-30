@@ -1,6 +1,6 @@
 import NavigationBar from "@/components/app-ui/navbar";
 import { Button } from "@/components/ui/button";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,7 +28,9 @@ export default function Home() {
             </p>
             <SignedOut>
               <Button className="bg-blue-500 py-7 px-10 hover:bg-blue-700 text-white font-bold">
-                Get Started
+                <SignInButton afterSignInUrl="/chat" mode="modal">
+                  Get Started
+                </SignInButton>
               </Button>
             </SignedOut>
             <SignedIn>

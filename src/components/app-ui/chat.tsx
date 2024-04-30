@@ -56,12 +56,12 @@ const ChatComponent: React.FC<ComponentProps> = ({ messages }) => {
           <Suspense fallback={<h1>Loading information</h1>}>
             {messages && messages.length
               ? messages.map((m) => {
-                  const { message, type, _id } = m;
+                  const { message, type, _id, _creationTime } = m;
                   return (
                     <ChatBubble
                       message={message}
                       sender={type === "user"}
-                      sentAt="4 mins ago"
+                      sentAt={_creationTime}
                       key={_id}
                     />
                   );

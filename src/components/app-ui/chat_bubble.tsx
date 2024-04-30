@@ -2,10 +2,11 @@
 
 import { cn } from "@/lib/utils";
 import React from "react";
+import moment from "moment";
 
 type ChatProps = {
   message: string;
-  sentAt: string;
+  sentAt: number | string;
   sender: boolean;
 };
 
@@ -14,6 +15,7 @@ export const ChatBubble: React.FC<ChatProps> = ({
   sentAt,
   sender,
 }) => {
+  let m = moment(sentAt);
   return (
     <div
       className={cn(
@@ -29,7 +31,7 @@ export const ChatBubble: React.FC<ChatProps> = ({
               {sender ? "You" : "Rafiki"}
             </p>
             <span className="text-sm text-gray-400 dark:text-gray-400">
-              {sentAt}
+              {m.format("lll")}
             </span>
           </div>
         </div>
